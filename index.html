@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>From Maths to AI — United Design Practice</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --void: #080808;
+    --void-2: #0d0d0f;
+    --void-3: #121218;
+    --void-w: #100f0c;
+    --void-w2: #161410;
+    --gold: #c9a84c;
+    --gold-dim: #7a6228;
+    --gold-faint: rgba(201,168,76,0.06);
+    --lavender: #9b8ec4;
+    --lavender-faint: rgba(155,142,196,0.06);
+    --teal: #5bb8a8;
+    --teal-faint: rgba(91,184,168,0.05);
+    --ash: #5a5a5a;
+    --ash-light: #888;
+    --paper: #d4cec4;
+    --paper-dim: #8e8a84;
+    --cool-line: rgba(155,142,196,0.12);
+    --warm-line: rgba(201,168,76,0.1);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--void);
+    color: var(--paper);
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 18px;
+    line-height: 1.6;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    background-size: 256px 256px;
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0.35;
+  }
+
+  /* ─── HEADER ─── */
+  header {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 90px 60px 72px;
+    position: relative;
+  }
+
+  .header-rule {
+    width: 1px;
+    height: 52px;
+    background: var(--gold-dim);
+    margin-bottom: 44px;
+  }
+
+  .header-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 28px;
+  }
+
+  /* ─── TITLE BLOCK ─── */
+  .title-block {
+    display: grid;
+    grid-template-columns: 1fr 1px 1fr;
+    gap: 0 52px;
+    align-items: start;
+    margin-bottom: 52px;
+  }
+
+  .title-divider {
+    background: rgba(255,255,255,0.06);
+    align-self: stretch;
+    margin-top: 6px;
+  }
+
+  .title-half {
+    position: relative;
+  }
+
+  .title-half-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .title-half-label::after {
+    content: '';
+    display: block;
+    height: 1px;
+    flex: 1;
+    background: currentColor;
+    opacity: 0.2;
+  }
+
+  .label-cool { color: var(--lavender); }
+  .label-warm { color: var(--gold); }
+
+  .title-half h1 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 400;
+    line-height: 1.08;
+    letter-spacing: -0.01em;
+  }
+
+  .h1-main {
+    font-size: clamp(2rem, 3.8vw, 3.2rem);
+    color: var(--paper);
+    display: block;
+  }
+
+  .h1-sub {
+    font-size: clamp(1.1rem, 2vw, 1.55rem);
+    display: block;
+    margin-top: 10px;
+    font-style: italic;
+  }
+
+  .h1-sub-cool { color: var(--lavender); }
+  .h1-sub-warm { color: var(--gold); }
+
+  .title-half-desc {
+    margin-top: 20px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.92rem;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--paper-dim);
+    line-height: 1.75;
+    max-width: 340px;
+  }
+
+  /* super-title above both halves */
+  .super-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.4rem, 4.5vw, 3.8rem);
+    font-weight: 400;
+    color: var(--paper);
+    letter-spacing: -0.015em;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .super-title em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .super-row {
+    margin-bottom: 44px;
+  }
+
+  .super-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--paper-dim);
+    margin-top: 10px;
+    max-width: 600px;
+    line-height: 1.7;
+  }
+
+  .header-meta {
+    display: flex;
+    gap: 36px;
+    align-items: center;
+    margin-top: 44px;
+  }
+
+  .meta-item {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    color: var(--ash);
+    text-transform: uppercase;
+  }
+
+  .meta-divider {
+    width: 32px;
+    height: 1px;
+    background: var(--ash);
+    opacity: 0.3;
+  }
+
+  /* ─── MAIN ─── */
+  main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 60px 120px;
+  }
+
+  /* ─── SECTION ─── */
+  .section {
+    margin-bottom: 80px;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 20px;
+    margin-bottom: 4px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid;
+  }
+
+  .section-header-cool { border-color: var(--cool-line); }
+  .section-header-warm { border-color: var(--warm-line); }
+
+  .section-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+  }
+
+  .section-title-cool { color: var(--lavender); }
+  .section-title-warm { color: var(--gold); }
+
+  .section-title-desc {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.88rem;
+    font-style: italic;
+    color: var(--ash);
+    font-weight: 300;
+  }
+
+  .section-count {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    color: var(--ash);
+    margin-left: auto;
+    opacity: 0.6;
+  }
+
+  /* ─── GRID ─── */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2px;
+    margin-top: 2px;
+  }
+
+  /* ─── CARD ─── */
+  .card {
+    display: block;
+    text-decoration: none;
+    padding: 36px 32px;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s ease;
+    cursor: pointer;
+  }
+
+  /* cool cards */
+  .card-cool {
+    background: var(--void-2);
+  }
+  .card-cool:hover {
+    background: var(--void-3);
+  }
+  .card-cool::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, var(--lavender-faint) 0%, transparent 55%);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .card-cool:hover::before { opacity: 1; }
+
+  /* warm cards */
+  .card-warm {
+    background: var(--void-w);
+  }
+  .card-warm:hover {
+    background: var(--void-w2);
+  }
+  .card-warm::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, var(--gold-faint) 0%, transparent 55%);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .card-warm:hover::before { opacity: 1; }
+
+  /* accent bar */
+  .card-accent {
+    position: absolute;
+    top: 0; left: 0;
+    width: 2px;
+    height: 0;
+    transition: height 0.4s cubic-bezier(0.4,0,0.2,1);
+  }
+  .card:hover .card-accent { height: 100%; }
+
+  .accent-lavender { background: var(--lavender); }
+  .accent-teal     { background: var(--teal); }
+  .accent-gold     { background: var(--gold); }
+
+  /* card internals */
+  .card-number {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    color: var(--ash);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .card-number::after {
+    content: '';
+    display: block;
+    flex: 1;
+    height: 1px;
+    background: currentColor;
+    opacity: 0.18;
+  }
+
+  .card-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8.5px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 3px 7px;
+    border: 1px solid currentColor;
+    border-radius: 2px;
+    margin-bottom: 14px;
+    display: inline-block;
+    opacity: 0.75;
+  }
+
+  .tag-lavender { color: var(--lavender); }
+  .tag-teal     { color: var(--teal); }
+  .tag-gold     { color: var(--gold); }
+
+  .card h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.25rem;
+    font-weight: 400;
+    line-height: 1.25;
+    color: var(--paper);
+    margin-bottom: 10px;
+    transition: color 0.2s;
+  }
+  .card:hover h2 { color: #e8e0d0; }
+
+  .card p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.92rem;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--paper-dim);
+    line-height: 1.65;
+    margin-bottom: 24px;
+  }
+
+  .card-arrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    color: var(--ash);
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    transition: color 0.2s, gap 0.25s;
+  }
+
+  .card-cool:hover .card-arrow { color: var(--lavender); }
+  .card-warm:hover .card-arrow { color: var(--gold); }
+  .card:hover .card-arrow { gap: 13px; }
+
+  /* featured card */
+  .card.featured {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 1fr 1px 1fr;
+    gap: 0 52px;
+    padding: 48px 44px;
+    align-items: start;
+  }
+
+  .featured-divider {
+    background: rgba(255,255,255,0.04);
+    align-self: stretch;
+  }
+
+  .card.featured h2 { font-size: 1.75rem; }
+  .card.featured p  { font-size: 1rem; }
+
+  .featured-right { padding-top: 4px; }
+
+  .featured-detail {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.88rem;
+    font-weight: 300;
+    color: var(--ash);
+    line-height: 1.8;
+    margin-bottom: 14px;
+  }
+  .featured-detail strong {
+    font-weight: 400;
+    color: var(--paper-dim);
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 36px 60px 56px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-top: 1px solid rgba(255,255,255,0.04);
+  }
+
+  .footer-mark {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    color: var(--gold);
+    font-style: italic;
+  }
+
+  .footer-note {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    color: var(--ash);
+    text-align: right;
+    line-height: 2.2;
+  }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  header { animation: fadeUp 0.9s ease both; }
+  .section:nth-child(1) { animation: fadeUp 0.7s 0.15s ease both; }
+  .section:nth-child(2) { animation: fadeUp 0.7s 0.3s  ease both; }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 760px) {
+    header, main, footer { padding-left: 24px; padding-right: 24px; }
+    header { padding-top: 56px; }
+
+    .title-block {
+      grid-template-columns: 1fr;
+      gap: 32px 0;
+    }
+    .title-divider { display: none; }
+
+    .card.featured {
+      grid-template-columns: 1fr;
+      gap: 32px 0;
+    }
+    .featured-divider { display: none; }
+
+    .header-meta { flex-wrap: wrap; gap: 16px; }
+    .meta-divider { display: none; }
+
+    footer { flex-direction: column; gap: 20px; align-items: flex-start; }
+    .footer-note { text-align: left; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-rule"></div>
+  <div class="header-eyebrow">United Design Practice · Interactive Collection</div>
+
+  <div class="super-row">
+    <div class="super-title">From Maths <em>to AI</em></div>
+    <div class="super-sub">Eight interactive documents tracing the arc from formal structure to speculative play — across civilisations, dimensions, and the edges of what notation can hold.</div>
+  </div>
+
+  <div class="title-block">
+    <div class="title-half">
+      <div class="title-half-label label-cool">I — Rigorous</div>
+      <h1>
+        <span class="h1-main">Representation</span>
+        <span class="h1-sub h1-sub-cool">Structure, model, proof.</span>
+      </h1>
+      <p class="title-half-desc">Documents grounded in formal mathematics — geometry, topology, modelling, and the epistemics of high-dimensional thought.</p>
+    </div>
+
+    <div class="title-divider"></div>
+
+    <div class="title-half">
+      <div class="title-half-label label-warm">II — Exploratory</div>
+      <h1>
+        <span class="h1-main">Speculative &amp; Play</span>
+        <span class="h1-sub h1-sub-warm">Alternative, alien, strategic.</span>
+      </h1>
+      <p class="title-half-desc">Documents that ask what mathematics could have been, or might be — in other civilisations, other minds, other games.</p>
+    </div>
+  </div>
+
+  <div class="header-meta">
+    <span class="meta-item">8 documents</span>
+    <div class="meta-divider"></div>
+    <span class="meta-item">Self-contained HTML</span>
+    <div class="meta-divider"></div>
+    <span class="meta-item">Interactive</span>
+  </div>
+</header>
+
+<main>
+
+  <!-- ═══ SECTION I: RIGOROUS ═══ -->
+  <div class="section">
+    <div class="section-header section-header-cool">
+      <span class="section-title section-title-cool">I — Representation</span>
+      <span class="section-title-desc">rigorous · formal · structural</span>
+      <span class="section-count">04 documents</span>
+    </div>
+
+    <div class="grid">
+
+      <!-- Featured: Calabi–Yau -->
+      <a class="card featured card-cool" href="calabi_yau_fixed_final_with_interactives.html">
+        <div class="card-accent accent-lavender"></div>
+        <div class="featured-left">
+          <div class="card-number">01</div>
+          <div class="card-tag tag-lavender">Geometry · Topology</div>
+          <h2>From Everyday Geometry<br>to Calabi–Yau Manifolds</h2>
+          <p>A guided ascent from the triangles of childhood to the six-dimensional shapes at the heart of string theory — rendered interactive at every step.</p>
+          <div class="card-arrow">Open document →</div>
+        </div>
+        <div class="featured-divider"></div>
+        <div class="featured-right">
+          <div class="featured-detail"><strong>Topics</strong><br>Gaussian curvature · Riemann surfaces · Kähler geometry · Holonomy groups · Yau's theorem</div>
+          <div class="featured-detail"><strong>Format</strong><br>WebGL canvas · Interactive modules · Proof walkthroughs</div>
+          <div class="featured-detail"><strong>Start here</strong><br>Establishes the geometric intuitions that run through the whole collection.</div>
+        </div>
+      </a>
+
+      <!-- Mathematical Modelling -->
+      <a class="card card-cool" href="mathematical_modelling_notes_dark.html">
+        <div class="card-accent accent-teal"></div>
+        <div class="card-number">02</div>
+        <div class="card-tag tag-teal">Modelling · Applied</div>
+        <h2>Mathematical Modelling Course Notes</h2>
+        <p>A dense, annotated companion covering the formal mechanics of building mathematical models of the physical world.</p>
+        <div class="card-arrow">Open document →</div>
+      </a>
+
+      <!-- Problems as Projections -->
+      <a class="card card-cool" href="higher_dimensional_epistemology_redesigned.html">
+        <div class="card-accent accent-lavender"></div>
+        <div class="card-number">03</div>
+        <div class="card-tag tag-lavender">Epistemology · Cognition</div>
+        <h2>Problems as Projections</h2>
+        <p>Higher-dimensional epistemology — every problem we perceive is a shadow cast by a structure we cannot directly see.</p>
+        <div class="card-arrow">Open document →</div>
+      </a>
+
+      <!-- Catalan Face Explorer -->
+      <a class="card card-cool" href="catalan_angle_explorer.html">
+        <div class="card-accent accent-teal"></div>
+        <div class="card-number">04</div>
+        <div class="card-tag tag-teal">Combinatorics · Geometry</div>
+        <h2>Catalan Face Explorer</h2>
+        <p>An interactive navigator of the pentagonal hexecontahedron — moving through Catalan solids via angle relationships and symmetry groups.</p>
+        <div class="card-arrow">Open document →</div>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- ═══ SECTION II: EXPLORATORY ═══ -->
+  <div class="section">
+    <div class="section-header section-header-warm">
+      <span class="section-title section-title-warm">II — Speculative &amp; Play</span>
+      <span class="section-title-desc">alternative · alien · strategic</span>
+      <span class="section-count">04 documents</span>
+    </div>
+
+    <div class="grid">
+
+      <!-- Ramanujan × 算學 -->
+      <a class="card card-warm" href="ramanujan-suanxue-integrated.html">
+        <div class="card-accent accent-gold"></div>
+        <div class="card-number">05</div>
+        <div class="card-tag tag-gold">History · Epistemology</div>
+        <h2>Ramanujan × 算學 — The Transformation Engine</h2>
+        <p>The goddess-given intuitions of Ramanujan meet the relational calculus of classical Chinese mathematics — two traditions placed in generative dialogue.</p>
+        <div class="card-arrow">Open document →</div>
+      </a>
+
+      <!-- 算學 Alternative -->
+      <a class="card card-warm" href="chinese-math-reimagined.html">
+        <div class="card-accent accent-gold"></div>
+        <div class="card-number">06</div>
+        <div class="card-tag tag-gold">算學 · Alternative Histories</div>
+        <h2>算學 — An Alternative Mathematics</h2>
+        <p>What if mathematics had grown from the abacus, not the axiom? A speculative reconstruction of a Chinese-rooted formal tradition.</p>
+        <div class="card-arrow">Open document →</div>
+      </a>
+
+      <!-- Xenomathematics -->
+      <a class="card card-warm" href="alien-math-fixed.html">
+        <div class="card-accent accent-gold"></div>
+        <div class="card-number">07</div>
+        <div class="card-tag tag-gold">Xenomathematics</div>
+        <h2>Xenomathematics</h2>
+        <p>If cognition shapes formal systems, what mathematics might non-human minds arrive at? An inquiry into the deep contingency of our notation.</p>
+        <div class="card-arrow">Open document →</div>
+      </a>
+
+      <!-- Von Neumann × Sun Tzu -->
+      <a class="card card-warm" href="neumann-suntzu-live-fixed.html">
+        <div class="card-accent accent-gold"></div>
+        <div class="card-number">08</div>
+        <div class="card-tag tag-gold">Game Theory · Strategy</div>
+        <h2>Von Neumann × Sun Tzu</h2>
+        <p>A living seminar: the architect of game theory in conversation with the oldest strategic treatise — finding formal structure beneath the art of war.</p>
+        <div class="card-arrow">Open document →</div>
+      </a>
+
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <div class="footer-mark">United Design Practice</div>
+  <div class="footer-note">
+    <span>Mathematical opacity is a property</span><br>
+    <span>of notation, not of geometry.</span>
+  </div>
+</footer>
+
+</body>
+</html>
