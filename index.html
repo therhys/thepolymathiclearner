@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>From Maths to AI — United Design Practice</title>
+<title>The Polymathic Learner — United Design Practice</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -20,6 +20,9 @@
     --lavender-faint: rgba(155,142,196,0.06);
     --teal: #5bb8a8;
     --teal-faint: rgba(91,184,168,0.05);
+    --geometry: #6fb2a2;
+    --geometry-faint: rgba(111,178,162,0.06);
+    --geometry-line: rgba(111,178,162,0.12);
     --ash: #5a5a5a;
     --ash-light: #888;
     --paper: #d4cec4;
@@ -79,16 +82,14 @@
   /* ─── TITLE BLOCK ─── */
   .title-block {
     display: grid;
-    grid-template-columns: 1fr 1px 1fr;
-    gap: 0 52px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 36px;
     align-items: start;
     margin-bottom: 52px;
   }
 
   .title-divider {
-    background: rgba(255,255,255,0.06);
-    align-self: stretch;
-    margin-top: 6px;
+    display: none;
   }
 
   .title-half {
@@ -116,6 +117,7 @@
   }
 
   .label-cool { color: var(--lavender); }
+  .label-geometry { color: var(--geometry); }
   .label-warm { color: var(--gold); }
 
   .title-half h1 {
@@ -139,6 +141,7 @@
   }
 
   .h1-sub-cool { color: var(--lavender); }
+  .h1-sub-geometry { color: var(--geometry); }
   .h1-sub-warm { color: var(--gold); }
 
   .title-half-desc {
@@ -153,23 +156,55 @@
   }
 
   /* super-title above both halves */
-  .super-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(2.4rem, 4.5vw, 3.8rem);
-    font-weight: 400;
-    color: var(--paper);
-    letter-spacing: -0.015em;
-    line-height: 1;
-    margin-bottom: 6px;
-  }
-
-  .super-title em {
-    font-style: italic;
-    color: var(--gold);
-  }
-
   .super-row {
-    margin-bottom: 44px;
+    margin-bottom: 52px;
+  }
+
+  .super-title-preface {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(1rem, 1.6vw, 1.25rem);
+    color: var(--gold);
+    letter-spacing: 0.04em;
+    display: block;
+    margin-bottom: 4px;
+    opacity: 0.9;
+  }
+
+  .super-title {
+    display: block;
+    margin-bottom: 0;
+  }
+
+  .super-title-main {
+    font-family: 'Playfair Display', serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: clamp(3.2rem, 6.5vw, 5.6rem);
+    color: var(--paper);
+    letter-spacing: -0.025em;
+    display: block;
+    line-height: 0.95;
+  }
+
+  .super-title-italic {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(3.2rem, 6.5vw, 5.6rem);
+    color: var(--lavender);
+    letter-spacing: -0.02em;
+    display: block;
+    line-height: 1.0;
+  }
+
+  .super-title-rule {
+    width: 48px;
+    height: 1px;
+    background: var(--gold-dim);
+    margin: 22px 0 18px;
+    opacity: 0.6;
   }
 
   .super-sub {
@@ -178,9 +213,8 @@
     font-weight: 300;
     font-style: italic;
     color: var(--paper-dim);
-    margin-top: 10px;
-    max-width: 600px;
-    line-height: 1.7;
+    max-width: 560px;
+    line-height: 1.75;
   }
 
   .header-meta {
@@ -227,6 +261,7 @@
   }
 
   .section-header-cool { border-color: var(--cool-line); }
+  .section-header-geometry { border-color: var(--geometry-line); }
   .section-header-warm { border-color: var(--warm-line); }
 
   .section-title {
@@ -237,6 +272,7 @@
   }
 
   .section-title-cool { color: var(--lavender); }
+  .section-title-geometry { color: var(--geometry); }
   .section-title-warm { color: var(--gold); }
 
   .section-title-desc {
@@ -292,6 +328,23 @@
   }
   .card-cool:hover::before { opacity: 1; }
 
+  /* geometry cards */
+  .card-geometry {
+    background: #0a1110;
+  }
+  .card-geometry:hover {
+    background: #101a18;
+  }
+  .card-geometry::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, var(--geometry-faint) 0%, transparent 55%);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .card-geometry:hover::before { opacity: 1; }
+
   /* warm cards */
   .card-warm {
     background: var(--void-w);
@@ -321,6 +374,7 @@
 
   .accent-lavender { background: var(--lavender); }
   .accent-teal     { background: var(--teal); }
+  .accent-geometry { background: var(--geometry); }
   .accent-gold     { background: var(--gold); }
 
   /* card internals */
@@ -358,6 +412,7 @@
 
   .tag-lavender { color: var(--lavender); }
   .tag-teal     { color: var(--teal); }
+  .tag-geometry { color: var(--geometry); }
   .tag-gold     { color: var(--gold); }
 
   .card h2 {
@@ -423,6 +478,12 @@
   .card-cool:hover .card-arrow { opacity: 1; gap: 14px; }
   .card-cool:hover .card-arrow::before { opacity: 0.08; }
   .card-cool:hover .card-arrow .arrow-icon { transform: translateX(3px); }
+
+  /* geometry section button */
+  .card-geometry .card-arrow { color: var(--geometry); opacity: 0.55; }
+  .card-geometry:hover .card-arrow { opacity: 1; gap: 14px; }
+  .card-geometry:hover .card-arrow::before { opacity: 0.08; }
+  .card-geometry:hover .card-arrow .arrow-icon { transform: translateX(3px); }
 
   /* warm section button */
   .card-warm .card-arrow { color: var(--gold); opacity: 0.55; }
@@ -514,6 +575,7 @@
   header { animation: fadeUp 0.9s ease both; }
   .section:nth-child(1) { animation: fadeUp 0.7s 0.15s ease both; }
   .section:nth-child(2) { animation: fadeUp 0.7s 0.3s  ease both; }
+  .section:nth-child(3) { animation: fadeUp 0.7s 0.45s ease both; }
 
   /* ─── RESPONSIVE ─── */
   @media (max-width: 760px) {
@@ -547,24 +609,101 @@
   <div class="header-eyebrow">United Design Practice · Interactive Collection</div>
 
   <div class="super-row">
-    <div class="super-title">From Maths <em>to AI</em></div>
-    <div class="super-sub">Eight interactive documents tracing the arc from formal structure to speculative play — across civilisations, dimensions, and the edges of what notation can hold.</div>
+    <span class="super-title-preface">The</span>
+
+    <!-- SVG title: Polymathic with coloured i (dot/stem) and c, then Learner in white italic -->
+    <svg id="main-title-svg" xmlns="http://www.w3.org/2000/svg"
+         width="100%" height="auto"
+         viewBox="0 0 900 188"
+         style="display:block; overflow:visible; width:min(100%, 520px); height:auto; margin-bottom: 0;">
+      <defs>
+        <clipPath id="clip-dot">
+          <rect x="0" y="0" width="900" height="29"/>
+        </clipPath>
+        <clipPath id="clip-stem">
+          <rect x="0" y="29" width="900" height="60"/>
+        </clipPath>
+        <clipPath id="clip-c">
+          <rect x="562" y="0" width="76" height="95"/>
+        </clipPath>
+      </defs>
+
+      <!-- ── LAYER 1: full word in paper-white (base) ── -->
+      <text id="poly-base"
+            x="0" y="80"
+            font-family="'Playfair Display', Georgia, serif"
+            font-weight="700"
+            font-style="normal"
+            font-size="88"
+            letter-spacing="-2"
+            fill="#d4cec4">Polymathic</text>
+
+      <!-- ── LAYER 2: stem of i in lavender ── -->
+      <text clip-path="url(#clip-stem)"
+            x="0" y="80"
+            font-family="'Playfair Display', Georgia, serif"
+            font-weight="700"
+            font-style="normal"
+            font-size="88"
+            letter-spacing="-2"
+            fill="#9b8ec4">Polymathic</text>
+
+      <!-- ── LAYER 3: dot of i in gold ── -->
+      <text clip-path="url(#clip-dot)"
+            x="0" y="80"
+            font-family="'Playfair Display', Georgia, serif"
+            font-weight="700"
+            font-style="normal"
+            font-size="88"
+            letter-spacing="-2"
+            fill="#c9a84c">Polymathic</text>
+
+      <!-- ── LAYER 4: c in teal ── -->
+      <text clip-path="url(#clip-c)"
+            x="0" y="80"
+            font-family="'Playfair Display', Georgia, serif"
+            font-weight="700"
+            font-style="normal"
+            font-size="88"
+            letter-spacing="-2"
+            fill="#5bb8a8">Polymathic</text>
+
+      <!-- ── Learner: italic, white, below; sized to match Index 2 title hierarchy ── -->
+      <text x="2" y="164"
+            font-family="'Playfair Display', Georgia, serif"
+            font-weight="400"
+            font-style="italic"
+            font-size="88"
+            letter-spacing="-2"
+            fill="#d4cec4">Learner</text>
+
+    </svg>
+
+    <div class="super-title-rule"></div>
+    <div class="super-sub">A visual learning archive where design, mathematics, geometry, speculative thought, and AI meet. A journey of learning by making — turning abstractions into interactive forms, and using computation as a companion for deeper inquiry.</div>
   </div>
 
   <div class="title-block">
     <div class="title-half">
-      <div class="title-half-label label-cool">I — Rigorous</div>
+      <div class="title-half-label label-cool">I — Representation</div>
       <h1>
         <span class="h1-main">Representation</span>
         <span class="h1-sub h1-sub-cool">Structure, model, proof.</span>
       </h1>
-      <p class="title-half-desc">Documents grounded in formal mathematics — geometry, topology, modelling, and the epistemics of high-dimensional thought.</p>
+      <p class="title-half-desc">Documents grounded in formal mathematics — topology, modelling, epistemology, and the logic of high-dimensional thought.</p>
     </div>
 
-    <div class="title-divider"></div>
+    <div class="title-half">
+      <div class="title-half-label label-geometry">II — Geometry</div>
+      <h1>
+        <span class="h1-main">Geometry</span>
+        <span class="h1-sub h1-sub-geometry">Pattern, surface, growth.</span>
+      </h1>
+      <p class="title-half-desc">Interactive geometric instruments for spatial partition, aperiodic order, minimal surfaces, and biological growth logics.</p>
+    </div>
 
     <div class="title-half">
-      <div class="title-half-label label-warm">II — Exploratory</div>
+      <div class="title-half-label label-warm">III — Exploratory</div>
       <h1>
         <span class="h1-main">Speculative &amp; Play</span>
         <span class="h1-sub h1-sub-warm">Alternative, alien, strategic.</span>
@@ -574,7 +713,9 @@
   </div>
 
   <div class="header-meta">
-    <span class="meta-item">8 documents</span>
+    <span class="meta-item">13 documents</span>
+    <div class="meta-divider"></div>
+    <span class="meta-item">3 collections</span>
     <div class="meta-divider"></div>
     <span class="meta-item">Self-contained HTML</span>
     <div class="meta-divider"></div>
@@ -645,10 +786,82 @@
     </div>
   </div>
 
-  <!-- ═══ SECTION II: EXPLORATORY ═══ -->
+
+  <!-- ═══ SECTION II: GEOMETRY ═══ -->
+  <div class="section">
+    <div class="section-header section-header-geometry">
+      <span class="section-title section-title-geometry">II — Geometry</span>
+      <span class="section-title-desc">surface · growth · tiling · spatial logic</span>
+      <span class="section-count">05 documents</span>
+    </div>
+
+    <div class="grid">
+
+      <!-- Gyroid Explorer -->
+      <a class="card featured card-geometry" href="gyroid_explorer_with_maths.html">
+        <div class="card-accent accent-geometry"></div>
+        <div class="featured-left">
+          <div class="card-number">05</div>
+          <div class="card-tag tag-geometry">Minimal Surface · Topology</div>
+          <h2>Gyroid Explorer</h2>
+          <p>A triply periodic minimal surface rendered as an interactive spatial instrument — where curvature, channels, and material logic become visible.</p>
+          <div class="card-arrow"><span>Open document</span><span class="arrow-icon">→</span></div>
+        </div>
+        <div class="featured-divider"></div>
+        <div class="featured-right">
+          <div class="featured-detail"><strong>Core idea</strong><br>Surface as equation, structure, and material possibility.</div>
+          <div class="featured-detail"><strong>Topics</strong><br>Level sets · Mean curvature · Periodicity · Interlocking channels</div>
+          <div class="featured-detail"><strong>Why here</strong><br>It anchors the geometry section in a rigorous but visually inhabitable spatial form.</div>
+        </div>
+      </a>
+
+      <!-- 2D Phyllotaxis -->
+      <a class="card card-geometry" href="phyllotaxis(1).html">
+        <div class="card-accent accent-geometry"></div>
+        <div class="card-number">06</div>
+        <div class="card-tag tag-geometry">Growth · Spiral Order</div>
+        <h2>Phyllotaxis</h2>
+        <p>A golden-angle growth study: how simple angular recurrence produces botanical density, spiral families, and emergent natural order.</p>
+        <div class="card-arrow"><span>Open document</span><span class="arrow-icon">→</span></div>
+      </a>
+
+      <!-- Voronoi Gallery -->
+      <a class="card card-geometry" href="voronoi-gallery.html">
+        <div class="card-accent accent-geometry"></div>
+        <div class="card-number">07</div>
+        <div class="card-tag tag-geometry">Partition · Territory</div>
+        <h2>Voronoi · A Geometry Gallery</h2>
+        <p>Five variations on one geometric question: which seed owns each point in space? A gallery of Delaunay, power, Manhattan, Apollonius, and spherical logics.</p>
+        <div class="card-arrow"><span>Open document</span><span class="arrow-icon">→</span></div>
+      </a>
+
+      <!-- 3D Phyllotaxis -->
+      <a class="card card-geometry" href="phyllotaxis_3d_imaginative_with_math(1).html">
+        <div class="card-accent accent-geometry"></div>
+        <div class="card-number">08</div>
+        <div class="card-tag tag-geometry">3D Growth · Morphogenesis</div>
+        <h2>3D Phyllotaxis — Growth Instrument</h2>
+        <p>A spatial extension of botanical phyllotaxis, turning spiral recurrence into a manipulable 3D growth field and sculptural mathematical object.</p>
+        <div class="card-arrow"><span>Open document</span><span class="arrow-icon">→</span></div>
+      </a>
+
+      <!-- Penrose Tiling -->
+      <a class="card card-geometry" href="penrose_tiling_with_maths_section(1).html">
+        <div class="card-accent accent-geometry"></div>
+        <div class="card-number">09</div>
+        <div class="card-tag tag-geometry">Aperiodic Order</div>
+        <h2>Penrose Tiling</h2>
+        <p>An exploration of order without repetition — golden-ratio geometry, inflation rules, local constraints, and the strange discipline of non-periodic beauty.</p>
+        <div class="card-arrow"><span>Open document</span><span class="arrow-icon">→</span></div>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- ═══ SECTION III: EXPLORATORY ═══ -->
   <div class="section">
     <div class="section-header section-header-warm">
-      <span class="section-title section-title-warm">II — Speculative &amp; Play</span>
+      <span class="section-title section-title-warm">III — Speculative &amp; Play</span>
       <span class="section-title-desc">alternative · alien · strategic</span>
       <span class="section-count">04 documents</span>
     </div>
@@ -658,7 +871,7 @@
       <!-- Ramanujan × 算學 -->
       <a class="card card-warm" href="ramanujan-suanxue-integrated.html">
         <div class="card-accent accent-gold"></div>
-        <div class="card-number">05</div>
+        <div class="card-number">10</div>
         <div class="card-tag tag-gold">History · Epistemology</div>
         <h2>Ramanujan × 算學 — The Transformation Engine</h2>
         <p>The goddess-given intuitions of Ramanujan meet the relational calculus of classical Chinese mathematics — two traditions placed in generative dialogue.</p>
@@ -668,7 +881,7 @@
       <!-- 算學 Alternative -->
       <a class="card card-warm" href="chinese-math-reimagined.html">
         <div class="card-accent accent-gold"></div>
-        <div class="card-number">06</div>
+        <div class="card-number">11</div>
         <div class="card-tag tag-gold">算學 · Alternative Histories</div>
         <h2>算學 — An Alternative Mathematics</h2>
         <p>What if mathematics had grown from the abacus, not the axiom? A speculative reconstruction of a Chinese-rooted formal tradition.</p>
@@ -678,7 +891,7 @@
       <!-- Xenomathematics -->
       <a class="card card-warm" href="alien-math-fixed.html">
         <div class="card-accent accent-gold"></div>
-        <div class="card-number">07</div>
+        <div class="card-number">12</div>
         <div class="card-tag tag-gold">Xenomathematics</div>
         <h2>Xenomathematics</h2>
         <p>If cognition shapes formal systems, what mathematics might non-human minds arrive at? An inquiry into the deep contingency of our notation.</p>
@@ -688,7 +901,7 @@
       <!-- Von Neumann × Sun Tzu -->
       <a class="card card-warm" href="neumann-suntzu-live-fixed.html">
         <div class="card-accent accent-gold"></div>
-        <div class="card-number">08</div>
+        <div class="card-number">13</div>
         <div class="card-tag tag-gold">Game Theory · Strategy</div>
         <h2>Von Neumann × Sun Tzu</h2>
         <p>A living seminar: the architect of game theory in conversation with the oldest strategic treatise — finding formal structure beneath the art of war.</p>
@@ -704,9 +917,55 @@
   <div class="footer-mark">United Design Practice</div>
   <div class="footer-note">
     <span>Mathematical opacity is a property</span><br>
-    <span>of notation, not of geometry.</span>
+    <span>of notation — geometry makes it visible.</span>
   </div>
 </footer>
 
+<script>
+document.fonts.ready.then(() => {
+  const svg = document.getElementById('main-title-svg');
+  if (!svg) return;
+  const base = svg.querySelector('#poly-base');
+  if (!base) return;
+
+  try {
+    // "Polymathic": P(0)o(1)l(2)y(3)m(4)a(5)t(6)h(7)i(8)c(9)
+    const iPos = base.getStartPositionOfChar(8);
+    const cPos = base.getStartPositionOfChar(9);
+    const endX = base.getEndPositionOfChar(9).x;
+    const iWidth = cPos.x - iPos.x;
+
+    // Playfair Display Bold 130px: baseline y=118, ascender ~y=10
+    // dot of i sits in top ~30% of glyph height (~108px total) => y=10..42
+    const dotBottom = 29;  // scaled from 130->88px: 42*(88/130) ~= 28.4
+
+    const clipDot  = document.querySelector('#clip-dot rect');
+    const clipStem = document.querySelector('#clip-stem rect');
+    const clipC    = document.querySelector('#clip-c rect');
+
+    clipDot.setAttribute('x', iPos.x);
+    clipDot.setAttribute('width', iWidth + 2);
+    clipDot.setAttribute('y', 0);
+    clipDot.setAttribute('height', dotBottom);
+
+    clipStem.setAttribute('x', iPos.x);
+    clipStem.setAttribute('width', iWidth + 2);
+    clipStem.setAttribute('y', dotBottom);
+    clipStem.setAttribute('height', 140);
+
+    clipC.setAttribute('x', cPos.x - 1);
+    clipC.setAttribute('width', endX - cPos.x + 3);
+    clipC.setAttribute('y', 0);
+    clipC.setAttribute('height', 140);
+
+    // Resize viewBox to actual text width while preserving the Index 2 two-line title scale
+    const bb = base.getBBox();
+    svg.setAttribute('viewBox', `0 0 ${Math.ceil(bb.width + 6)} 188`);
+
+  } catch(e) {
+    console.warn('SVG calibration error:', e);
+  }
+});
+</script>
 </body>
 </html>
