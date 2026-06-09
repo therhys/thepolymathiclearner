@@ -248,7 +248,136 @@
     background: linear-gradient(90deg, transparent, var(--dim), transparent);
     margin: 40px auto 0;
   }
+
+
+  /* ── EXPLANATORY MATHS LAYER ── */
+  .math-section {
+    margin: 34px auto 0;
+    max-width: 860px;
+    border: 1px solid rgba(0,255,204,0.16);
+    background:
+      linear-gradient(180deg, rgba(0,255,204,0.035), rgba(119,68,255,0.035)),
+      rgba(7,7,20,0.72);
+    box-shadow: 0 0 35px rgba(0,255,204,0.045), inset 0 0 35px rgba(119,68,255,0.035);
+    padding: 24px;
+    position: relative;
+  }
+
+  .math-section::before {
+    content: '';
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--pulse), var(--glow3), transparent);
+    opacity: 0.7;
+  }
+
+  .math-kicker {
+    color: var(--glow4);
+    font-size: 9px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .math-title {
+    font-family: 'Cinzel Decorative', serif;
+    color: var(--pulse);
+    font-size: clamp(13px, 2vw, 18px);
+    letter-spacing: 0.08em;
+    margin-bottom: 14px;
+  }
+
+  .math-body {
+    color: rgba(200,216,240,0.86);
+    font-size: 11px;
+    line-height: 1.95;
+    letter-spacing: 0.03em;
+  }
+
+  .math-body p { margin: 0 0 14px; }
+  .math-body p:last-child { margin-bottom: 0; }
+
+  .math-compare {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 14px;
+    margin: 16px 0;
+  }
+
+  .math-pill {
+    border: 1px solid rgba(119,68,255,0.22);
+    background: rgba(119,68,255,0.05);
+    padding: 14px;
+    min-height: 120px;
+  }
+
+  .math-pill strong {
+    display: block;
+    color: var(--glow3);
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    margin-bottom: 7px;
+  }
+
+  .formula {
+    margin: 14px 0;
+    padding: 14px 16px;
+    border-left: 2px solid var(--pulse);
+    background: rgba(0,255,204,0.035);
+    color: rgba(232,244,255,0.96);
+    overflow-x: auto;
+    font-size: 12px;
+  }
+
+  .math-note {
+    margin-top: 14px;
+    border-top: 1px solid rgba(0,255,204,0.09);
+    padding-top: 13px;
+    font-size: 10px;
+    color: rgba(200,216,240,0.78);
+    line-height: 1.8;
+  }
+
+  .math-note .formula {
+    font-size: 10px;
+    padding: 10px 12px;
+    margin: 9px 0 0;
+  }
+
+  .math-tag {
+    color: var(--glow4);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-size: 8px;
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  .caveat {
+    border-color: rgba(255,170,0,0.25);
+    background: rgba(255,170,0,0.035);
+    color: rgba(255,226,180,0.86);
+  }
+
 </style>
+
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['\\(', '\\)']],
+      displayMath: [['\\[', '\\]']],
+      processEscapes: true
+    },
+    chtml: {
+      scale: 0.92,
+      displayAlign: 'left'
+    }
+  };
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
 </head>
 <body>
 
@@ -289,6 +418,33 @@
       4D Perspective
     </div>
   </div>
+
+  <section class="math-section">
+    <div class="math-kicker">Explanatory Maths Layer</div>
+    <div class="math-title">From static geometry to navigable projection</div>
+    <div class="math-body">
+      <p>The visual treats the tesseract not as a mystical object, but as the ordinary cube idea extended into one extra coordinate. Human geometry usually stabilises an object in a diagram; the speculative move here is that the diagram is only a temporary shadow of a higher-dimensional object being rotated through invisible axes.</p>
+      <div class="math-compare">
+        <div class="math-pill"><strong>Previous structure</strong> Euclidean geometry begins with shapes drawn in 2D or 3D: point, line, square, cube. Understanding comes from naming the object and measuring its parts.</div>
+        <div class="math-pill"><strong>New speculative structure</strong> Xenomathematics treats the object as a family of projections. The “equation” is not the drawing; it is the invariant object that survives every viewpoint.</div>
+      </div>
+      <div class="formula">
+        \[
+        Q_4=\{(x_1,x_2,x_3,x_4):x_i\in\{-1,1\}\},\qquad
+        E=\{(u,v):d_H(u,v)=1\}
+        \]
+      </div>
+      <p>Here \(Q_4\) is the 4D hypercube. Its 16 vertices are all sign-combinations of four coordinates. Edges connect vertices whose Hamming distance \(d_H\) is exactly one: they differ in one coordinate only.</p>
+      <div class="formula">
+        \[
+        p' = R_{xw}(\alpha)R_{yw}(\beta)R_{xy}(\gamma)R_{zw}(\delta)p,
+        \qquad
+        \pi_{4\to3}(p')=\frac{d_4}{d_4-w'}(x',y',z')
+        \]
+      </div>
+      <p>The sliders therefore change not the object itself, but the rotation and projection regime. The speculative thought: a higher-dimensional intelligence may experience algebra as controlled viewpoint-shifting, where cognition is closer to rotating a truth than reading a formula.</p>
+    </div>
+  </section>
 </div>
 
 <!-- ═══════════════════════════════════════════ PANEL 2: FIELD MATH -->
@@ -312,6 +468,36 @@
       Resolution
     </div>
   </div>
+
+  <section class="math-section">
+    <div class="math-kicker">Explanatory Maths Layer</div>
+    <div class="math-title">From solving for answers to reading relational fields</div>
+    <div class="math-body">
+      <p>This section reframes mathematics as a field of tendencies. In conventional school mathematics, we often ask for a final value. Here, the “answer” is the whole behaviour-space: attraction, circulation, saddle instability, interference, or complex flow.</p>
+      <div class="math-compare">
+        <div class="math-pill"><strong>Previous structure</strong> Algebra often privileges expressions such as \(y=f(x)\), where one input produces one output.</div>
+        <div class="math-pill"><strong>New speculative structure</strong> Field mathematics privileges a local rule everywhere at once: every point carries an instruction for how a particle, thought, proof, or system would move.</div>
+      </div>
+      <div class="formula">
+        \[
+        F:\mathbb{R}^2\times T\rightarrow\mathbb{R}^2,\qquad
+        \frac{d\mathbf{x}}{dt}=F(\mathbf{x},t)
+        \]
+      </div>
+      <p>A vector field \(F\) assigns a direction and magnitude to each point. The visible arrows are samples of that invisible relation. The trajectories that would follow the arrows are integral curves, generated by \(d\mathbf{x}/dt=F(\mathbf{x},t)\).</p>
+      <div class="formula">
+        \[
+        F_{gravity}(x,y)=\frac{-(x,y)}{x^2+y^2+\varepsilon},\quad
+        F_{vortex}(x,y,t)=\frac{(-y,x)}{\sqrt{x^2+y^2}}\sin(r-\omega t)
+        \]
+        \[
+        F_{saddle}(x,y,t)=(x,-y)\cos(\omega t),\quad
+        F_{complex}(z,t)=z^2+e^{i\omega t}
+        \]
+      </div>
+      <p>The speculative thought: alien learners may not memorise an equation as a line of symbols. They may perceive a whole possibility-landscape, then identify attractors, vortices, instabilities, and symmetries directly.</p>
+    </div>
+  </section>
 </div>
 
 <!-- ═══════════════════════════════════════════ PANEL 3: TEMPORAL PROOFS -->
@@ -331,6 +517,34 @@
       Logical Depth
     </div>
   </div>
+
+  <section class="math-section">
+    <div class="math-kicker">Explanatory Maths Layer</div>
+    <div class="math-title">From linear proof to temporal proof-object</div>
+    <div class="math-body">
+      <p>A human proof is normally written as a sequence: assumption, lemma, inference, conclusion. The speculative model here treats a proof as a structured object in logical time. Moving the slider does not merely reveal “next steps”; it slices through a proof-object whose components coexist.</p>
+      <div class="math-compare">
+        <div class="math-pill"><strong>Previous structure</strong> Proof as text: \(S_0\Rightarrow S_1\Rightarrow\cdots\Rightarrow S_n\). Meaning is recovered by reading in order.</div>
+        <div class="math-pill"><strong>New speculative structure</strong> Proof as geometry: nodes are propositions, edges are inference-preserving transformations, and the theorem is an attractor or boundary condition.</div>
+      </div>
+      <div class="formula">
+        \[
+        P=(V,E,\tau),\qquad
+        e_{ij}\in E: S_i\vdash S_j,\qquad
+        P_t=\{v\in V:\tau(v)\leq t\}
+        \]
+      </div>
+      <p>Here \(P\) is a proof-complex. \(V\) is the set of propositions, \(E\) is the set of inference edges, and \(\tau\) is a logical-time function. The visible animation is a cross-section \(P_t\) of a larger proof structure.</p>
+      <div class="formula">
+        \[
+        \Phi_{e_k}\circ\cdots\circ\Phi_{e_2}\circ\Phi_{e_1}(A)=\Omega,
+        \qquad
+        \mathcal{I}(S_i)=\mathcal{I}(S_j)\;\text{when inference preserves truth}
+        \]
+      </div>
+      <p>The new thought is not that proof stops being rigorous. Rather, rigour shifts from linear persuasion to invariant-preservation across a transformation network. “QED” becomes the moment when all paths cohere around the same theorem-core.</p>
+    </div>
+  </section>
 </div>
 
 <!-- ═══════════════════════════════════════════ PANEL 4: TOPOLOGY -->
@@ -356,6 +570,40 @@
       Phase
     </div>
   </div>
+
+  <section class="math-section">
+    <div class="math-kicker">Explanatory Maths Layer</div>
+    <div class="math-title">From named surfaces to invariant-preserving deformation</div>
+    <div class="math-body">
+      <p>Topology asks what remains true when a shape bends, stretches, or flows without tearing. The visual makes that idea visceral: the surface changes continuously, yet certain deep properties should remain stable.</p>
+      <div class="math-compare">
+        <div class="math-pill"><strong>Previous structure</strong> Classical geometry asks for exact lengths, angles, coordinates, and equations of a fixed object.</div>
+        <div class="math-pill"><strong>New speculative structure</strong> Living topology studies families of deformations. The mathematical object is not a frozen surface, but a continuity class.</div>
+      </div>
+      <div class="formula">
+        \[
+        X:U\subset\mathbb{R}^2\rightarrow\mathbb{R}^3,\qquad
+        X_t(u,v)=H(X(u,v),t)
+        \]
+      </div>
+      <p>The surfaces are parameterised by two coordinates \((u,v)\), then animated by a deformation \(H\). If the deformation is continuous and does not cut or glue the surface, topological invariants should stay fixed.</p>
+      <div class="formula">
+        \[
+        \chi=V-E+F,\qquad
+        \pi_1(M),\qquad
+        \text{orientability}(M),\qquad
+        I(M_t)=I(M_0)
+        \]
+      </div>
+      <p>For the Calabi–Yau-inspired slice, the page is deliberately speculative and pedagogical: it is not rendering a rigorous six-real-dimensional Calabi–Yau manifold. A genuine Calabi–Yau structure is usually framed as a compact Kähler manifold with vanishing first Chern class, or equivalently in physics-facing language as admitting a Ricci-flat Kähler metric.</p>
+      <div class="formula caveat">
+        \[
+        c_1(M)=0,\qquad R_{i\bar{j}}=0
+        \]
+      </div>
+      <p>The new thought is therefore epistemological: alien mathematics may teach topology through deformation literacy first, with symbolic classification arriving later as a compressed label for what the body has already perceived.</p>
+    </div>
+  </section>
 </div>
 
 <!-- ═══════════════════════════════════════════ PANEL 5: NOTATION -->
@@ -368,23 +616,63 @@
       <canvas class="eq-canvas" id="eqCanvas1" width="280" height="160"></canvas>
       <div class="eq-label">Primordial Identity</div>
       <div class="eq-desc">What we call "1 = 1" — a self-referencing symmetry loop. The concept of equality is expressed as perfect rotational invariance.</div>
+      <div class="math-note">
+        <span class="math-tag">Maths interpretation</span>
+        Previous equality says two symbolic sides match. The speculative version says identity is invariance under allowed transformations.
+        <div class="formula">\[a=a\quad\longrightarrow\quad g\cdot x=x\;\;\forall g\in G_x\]</div>
+      </div>
     </div>
     <div class="eq-card">
       <canvas class="eq-canvas" id="eqCanvas2" width="280" height="160"></canvas>
       <div class="eq-label">Recursive Expansion</div>
       <div class="eq-desc">Analogous to exponentiation — but shown as a fractal bloom, where each petal is the "answer" at successively higher powers.</div>
+      <div class="math-note">
+        <span class="math-tag">Maths interpretation</span>
+        Previous exponentiation is repeated multiplication. The speculative notation treats power as recursive spatial growth generated by a transformation rule.
+        <div class="formula">\[a^n=\prod_{k=1}^{n}a\quad\longrightarrow\quad X_{n+1}=T(X_n),\; X_0=\circ\]</div>
+      </div>
     </div>
     <div class="eq-card">
       <canvas class="eq-canvas" id="eqCanvas3" width="280" height="160"></canvas>
       <div class="eq-label">Harmonic Convergence</div>
       <div class="eq-desc">The alien equivalent of a limit or integral — represented as concentric interference patterns collapsing toward a fixed attractor point.</div>
+      <div class="math-note">
+        <span class="math-tag">Maths interpretation</span>
+        Previous calculus measures approach or accumulation. The speculative form shows convergence as phase-locking into an attractor.
+        <div class="formula">\[\lim_{n\to\infty}x_n=L,\qquad A(r,t)=\sum_k c_k e^{-\lambda_k t}\cos(kr-\omega_k t)\]</div>
+      </div>
     </div>
     <div class="eq-card">
       <canvas class="eq-canvas" id="eqCanvas4" width="280" height="160"></canvas>
       <div class="eq-label">Topological Invariant</div>
       <div class="eq-desc">A property that doesn't change under deformation — shown as a knot that morphs but whose core crossing number remains encoded in its hue signature.</div>
+      <div class="math-note">
+        <span class="math-tag">Maths interpretation</span>
+        Previous notation describes a knot diagram. The speculative notation encodes the invariant across an isotopy, not just the visible curve.
+        <div class="formula">\[K_t\simeq K_0\;\text{by isotopy}\quad\Rightarrow\quad I(K_t)=I(K_0)\]</div>
+      </div>
     </div>
   </div>
+
+  <section class="math-section">
+    <div class="math-kicker">Explanatory Maths Layer</div>
+    <div class="math-title">From written symbols to transformational glyphs</div>
+    <div class="math-body">
+      <p>The notation panel explores a possible shift from inscription to behaviour. Human notation usually separates operator, operand, and result: we write the action, then compute the answer. The alien-glyph speculation fuses these into one animated object whose behaviour displays the operation.</p>
+      <div class="math-compare">
+        <div class="math-pill"><strong>Previous structure</strong> Linear notation: symbols are arranged in reading order, and syntax tells us how to transform them.</div>
+        <div class="math-pill"><strong>New speculative structure</strong> Embodied notation: the glyph itself changes under rotation, recursion, convergence, or deformation; its invariant behaviour is the statement.</div>
+      </div>
+      <div class="formula">
+        \[
+        \text{symbol}+\text{rule}+\text{result}
+        \quad\longrightarrow\quad
+        \mathcal{G}(t)=\big(\text{operand},\text{operator},\text{trajectory},\text{invariant}\big)
+        \]
+      </div>
+      <p>In this model, notation is closer to a mathematical instrument than a written sentence. A learner does not only decode it; they observe how it preserves identity, grows recursively, converges, or remains invariant under deformation.</p>
+    </div>
+  </section>
 </div>
 
 <div class="separator"></div>
